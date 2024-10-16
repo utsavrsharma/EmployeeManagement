@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EmployeeManagement.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (Model!= null )
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th><th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var Employee in Model)
+        {
+            <tr>
+                <td>@Employee.EmpId</td>
+                <td>@Employee.Name</td>
+                <td>@Employee.Salary</td>
+                <td>@Employee.DeptId</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Employees", new { id = Employee.EmpId})" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Employees", new { id = Employee.EmpId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
+    <a asp-controller="Home" asp-action="Dashboard" class="btn btn-primary">Back to Dashboard</a>
+
+}

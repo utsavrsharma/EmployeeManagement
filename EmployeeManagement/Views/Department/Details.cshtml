@@ -1,0 +1,39 @@
+﻿@model EmployeeManagement.Models.Department // Adjust the namespace
+
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<h1>@Model.DeptName</h1>
+
+<h3>Employees in this Department:</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Employees != null && Model.Employees.Any())
+        {
+            foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.EmpId</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Salary</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">No employees found in this department.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Department" asp-action="Index" class="btn btn-primary">Back to Departments</a>
